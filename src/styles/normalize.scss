@@ -1,0 +1,66 @@
+@import './vars';
+
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 46px;
+  line-height: 130%;
+  color: $white;
+}
+
+h2 {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: auto;
+  color: $white;
+}
+
+.text1 {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: $white;
+}
+
+body {
+  background: linear-gradient(to right, #191536, #000);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 50%;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #014954;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $blue;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-track-piece {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $white;
+}
