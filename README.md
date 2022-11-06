@@ -1,3 +1,7 @@
+# React video player
+
+[Demo link](https://fantazer-nure.github.io/video-player/)
+
 I decided to keep videos and events in Context instead of passing them through props into VideoPlayer, in order not to pass redundant props through components multiple times
 
 ## Trouble 1

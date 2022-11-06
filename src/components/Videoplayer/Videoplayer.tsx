@@ -1,10 +1,10 @@
-import { useContext, useEffect, useRef } from 'react';
+import { memo, useContext, useEffect, useRef } from 'react';
 import { VideoWindow } from '../VideoWindow/VideoWIndow';
 import { EventList } from '../EventList/EventList';
 import { VideoPlayerContext } from '../VideoPlayerContext/VideoPlayerContext';
 import { VideoSelector } from '../VideoSelector/VideoSelector';
 
-export const VideoPlayer: React.FC = () => {
+export const VideoPlayer: React.FC = memo(() => {
   const { currentVideo, events } = useContext(VideoPlayerContext);
   const videoElement = useRef(null);
   let visibleEvents = events.filter((e) => e.videoUrl === currentVideo.url);
@@ -33,10 +33,7 @@ export const VideoPlayer: React.FC = () => {
         events={visibleEvents}
       />
 
-      <EventList
-        events={visibleEvents}
-        videoRef={videoElement}
-      />
+      <EventList events={visibleEvents} videoRef={videoElement} />
     </div>
   );
-};
+});

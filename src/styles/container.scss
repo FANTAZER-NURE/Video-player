@@ -37,4 +37,11 @@
   &__option {
     max-width: 200px;
   }
+
+  &__empty {
+    grid-column: 1 / 19;
+    grid-row: 1 / 19;
+    justify-self: center;
+    align-self: center;
+  }
 }

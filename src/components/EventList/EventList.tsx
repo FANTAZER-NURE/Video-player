@@ -1,7 +1,7 @@
 import { Event } from '../../types/Event';
 import { v4 as uuidv4 } from 'uuid';
 import { useVideoPlayer } from '../../hooks/useVideoPlayer';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { VideoPlayerContext } from '../VideoPlayerContext/VideoPlayerContext';
 import classNames from 'classnames';
 
@@ -10,10 +10,7 @@ interface Props {
   videoRef: React.MutableRefObject<HTMLVideoElement | null>;
 }
 
-export const EventList: React.FC<Props> = ({
-  events,
-  videoRef,
-}) => {
+export const EventList: React.FC<Props> = memo(({ events, videoRef }) => {
   const { setVideoTime } = useVideoPlayer(videoRef);
   const { setCurrentEvent, currentEvent, currentVideo } =
     useContext(VideoPlayerContext);
@@ -60,4 +57,4 @@ export const EventList: React.FC<Props> = ({
       ))}
     </div>
   );
-};
+});

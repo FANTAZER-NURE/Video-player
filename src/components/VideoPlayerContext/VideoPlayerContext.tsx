@@ -23,53 +23,6 @@ type Props = {
   children: ReactNode;
 };
 
-
-// const videos: Video[] = [
-//   { title: 'Elephant', url: './assets/video.mp4' },
-//   { title: 'Earth', url: './assets/videogular.mp4' },
-// ];
-
-
-
-// const events: Event[] = [
-//   {
-//     title: 'First',
-//     videoTime: 5,
-//     videoUrl: './assets/video.mp4',
-//     videoToTime: 10,
-//   },
-//   {
-//     title: 'Second',
-//     videoTime: 5,
-//     videoUrl: './assets/videogular.mp4',
-//     videoToTime: 10,
-//   },
-//   {
-//     title: 'Third',
-//     videoTime: 12,
-//     videoUrl: './assets/video.mp4',
-//     videoToTime: 15,
-//   },
-//   {
-//     title: 'Fourth',
-//     videoTime: 12,
-//     videoUrl: './assets/videogular.mp4',
-//     videoToTime: 15,
-//   },
-//   {
-//     title: 'Fifth',
-//     videoTime: 17,
-//     videoUrl: './assets/video.mp4',
-//     videoToTime: 20,
-//   },
-//   {
-//     title: 'Sixth',
-//     videoTime: 17,
-//     videoUrl: './assets/videogular.mp4',
-//     videoToTime: 20,
-//   },
-// ];
-
 export const VideoPlayerContext = React.createContext<ContextValue>({
   currentEvent: events[0],
   currentVideo: videos[0],
