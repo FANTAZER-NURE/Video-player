@@ -1,5 +1,5 @@
 import { useVideoPlayer } from '../../hooks/useVideoPlayer';
-import { memo, useCallback, useContext, useEffect, useMemo } from 'react';
+import { memo, useCallback, useContext, useEffect } from 'react';
 import { Video } from '../../types/Video';
 import { VideoPlayerContext } from '../VideoPlayerContext/VideoPlayerContext';
 import { Event } from '../../types/Event';
@@ -26,11 +26,9 @@ export const VideoWindow: React.FC<Props> = memo(
      */
     const indexObject: IndexObject = {};
 
-    useMemo(() => {
-      events.forEach((el, i) => {
-        indexObject[i] = [el.videoTime, el.videoToTime];
-      });
-    }, [currentVideo]);
+    events.forEach((el, i) => {
+      indexObject[i] = [el.videoTime, el.videoToTime];
+    });
 
     useEffect(() => {
       setCurrentEvent(events[0]);
@@ -48,17 +46,21 @@ export const VideoWindow: React.FC<Props> = memo(
             e.currentTarget.currentTime >= indexObject[key][0] &&
             e.currentTarget.currentTime <= indexObject[key][1]
           ) {
+            console.log(1);
             const searchEvent = events.find((e) => e.index === +key);
 
             setCurrentEvent(searchEvent || null);
             break;
           } else {
+            console.log(2);
             setCurrentEvent(null);
           }
         }
       },
       [currentEvent, currentVideo]
     );
+
+    console.log(indexObject);
 
     return (
       <div className="video">
