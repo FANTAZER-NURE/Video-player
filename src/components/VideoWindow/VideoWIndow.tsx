@@ -1,6 +1,5 @@
 import { useVideoPlayer } from '../../hooks/useVideoPlayer';
-import { memo, useCallback, useContext, useEffect } from 'react';
-import '@fortawesome/fontawesome-free/css/all.css';
+import { memo, useCallback, useContext, useEffect, useMemo } from 'react';
 import { Video } from '../../types/Video';
 import { VideoPlayerContext } from '../VideoPlayerContext/VideoPlayerContext';
 import { Event } from '../../types/Event';
@@ -21,17 +20,21 @@ export const VideoWindow: React.FC<Props> = memo(
     const { currentVideo, currentEvent, setCurrentEvent } =
       useContext(VideoPlayerContext);
 
+    /*
+     * indexObject is needed to
+     * regulate events and sync it with timeline
+     */
     const indexObject: IndexObject = {};
 
-    events.forEach((el, i) => {
-      indexObject[i] = [el.videoTime, el.videoToTime];
-    });
+    useMemo(() => {
+      events.forEach((el, i) => {
+        indexObject[i] = [el.videoTime, el.videoToTime];
+      });
+    }, [currentVideo]);
 
     useEffect(() => {
       setCurrentEvent(events[0]);
       setVideoTime(events[0].videoTime);
-
-      console.log('mounted');
     }, [currentVideo]);
 
     useEffect(() => {
@@ -58,13 +61,7 @@ export const VideoWindow: React.FC<Props> = memo(
     );
 
     return (
-      <div
-        className="video"
-        onLoad={() => {
-          videoRef.current?.load();
-          videoRef.current?.play();
-        }}
-      >
+      <div className="video">
         <div className="video__wrapper">
           <video
             src={video.url}

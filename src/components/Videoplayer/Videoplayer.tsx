@@ -1,16 +1,11 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { VideoWindow } from '../VideoWindow/VideoWIndow';
 import { EventList } from '../EventList/EventList';
-import { Event } from '../../types/Event';
 import { VideoPlayerContext } from '../VideoPlayerContext/VideoPlayerContext';
 import { VideoSelector } from '../VideoSelector/VideoSelector';
 
-interface Props {
-  events: Event[];
-}
-
-export const VideoPlayer: React.FC<Props> = ({ events }) => {
-  const { currentVideo } = useContext(VideoPlayerContext);
+export const VideoPlayer: React.FC = () => {
+  const { currentVideo, events } = useContext(VideoPlayerContext);
   const videoElement = useRef(null);
   let visibleEvents = events.filter((e) => e.videoUrl === currentVideo.url);
 
@@ -24,11 +19,7 @@ export const VideoPlayer: React.FC<Props> = ({ events }) => {
     visibleEvents.forEach((el, i) => {
       el.index = i;
     });
-
-    console.log('changed');
   }, [currentVideo]);
-
-  console.log(visibleEvents);
 
   return (
     <div className="container">
@@ -45,7 +36,6 @@ export const VideoPlayer: React.FC<Props> = ({ events }) => {
       <EventList
         events={visibleEvents}
         videoRef={videoElement}
-        selectedVideo={currentVideo}
       />
     </div>
   );

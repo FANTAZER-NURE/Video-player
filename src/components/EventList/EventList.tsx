@@ -1,24 +1,22 @@
 import { Event } from '../../types/Event';
 import { v4 as uuidv4 } from 'uuid';
 import { useVideoPlayer } from '../../hooks/useVideoPlayer';
-import { Video } from '../../types/Video';
 import { useContext } from 'react';
 import { VideoPlayerContext } from '../VideoPlayerContext/VideoPlayerContext';
 import classNames from 'classnames';
 
 interface Props {
   events: Event[];
-  videoRef: React.MutableRefObject<any>;
-  selectedVideo: Video;
+  videoRef: React.MutableRefObject<HTMLVideoElement | null>;
 }
 
 export const EventList: React.FC<Props> = ({
   events,
   videoRef,
-  selectedVideo,
 }) => {
   const { setVideoTime } = useVideoPlayer(videoRef);
-  const { setCurrentEvent, currentEvent } = useContext(VideoPlayerContext);
+  const { setCurrentEvent, currentEvent, currentVideo } =
+    useContext(VideoPlayerContext);
 
   const handleClick = (event: Event) => {
     setVideoTime(event.videoTime);
@@ -28,7 +26,7 @@ export const EventList: React.FC<Props> = ({
 
   const checkEventsEquality = (event1: Event | null, event2: Event | null) => {
     if (!event1 || !event2) {
-      return false
+      return false;
     }
 
     for (const key in event1) {
@@ -41,9 +39,9 @@ export const EventList: React.FC<Props> = ({
     }
 
     return true;
-  }
+  };
 
-  const visibleEvents = events.filter((e) => e.videoUrl === selectedVideo.url);
+  const visibleEvents = events.filter((e) => e.videoUrl === currentVideo.url);
 
   return (
     <div className="events">

@@ -17,6 +17,7 @@
       position: relative;
       object-fit: contain;
       width: 100%;
+      outline: none;
 
       &:hover .controls {
         transform: translateY(0%);
